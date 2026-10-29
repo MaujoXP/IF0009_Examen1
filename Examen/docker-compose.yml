@@ -1,0 +1,33 @@
+services:
+  mlbdb:
+    container_name: mlbdb
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+      MYSQL_DATABASE: db_taller
+    volumes:
+      - mlbdb_data:/var/lib/mysql
+      - ./DB/taller.sql:/docker-entrypoint-initdb.d/taller.sql
+
+  mlbdatos:
+    container_name: mlbdatos
+    build:
+      context: .
+      dockerfile: DATA/Dockerfile
+    depends_on:
+      - mlbdb
+    ports:
+      - "8080:80"
+
+  mlbnegocio:
+    container_name: mlbnegocio
+    build:
+      context: .
+      dockerfile: BUSINESS/Dockerfile
+    depends_on:
+      - mlbdatos
+    ports:
+      - "9090:80"
+
+volumes:
+  mlbdb_data:

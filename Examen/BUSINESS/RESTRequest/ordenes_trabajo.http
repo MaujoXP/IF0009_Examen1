@@ -1,0 +1,32 @@
+@host = http://localhost:9090/api
+
+@uri = {{host}}/ordenes_trabajo
+
+### GET
+GET {{uri}}
+
+### GET filtrado
+GET {{uri}}/1
+
+### Crear
+POST {{uri}}
+Content-Type: application/json
+
+{
+    "placa_vehiculo": "ABC-123",
+    "propietario": "Mauricio Leon",
+    "descripcion_falla": "Pistón no pistea y el arbol de levas no crece",
+    "costo_estimado": 85000.50
+}
+
+### PUT
+PUT {{uri}}/1
+Content-Type: application/json
+
+{
+    "estado": "En Proceso",
+    "costo_estimado": 95000
+}
+
+### DELETE
+DELETE {{uri}}/1

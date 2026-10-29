@@ -1,0 +1,32 @@
+@host = http://localhost:8080/api
+
+@uri = {{host}}/ordenes_trabajo
+
+### Listar todas
+GET {{uri}}
+
+### Obtener una
+GET {{uri}}/1
+
+### Crear
+POST {{uri}}
+Content-Type: application/json
+
+{
+    "placa_vehiculo": "ABC-123",
+    "propietario": "Mauricio Leon",
+    "descripcion_falla": "Ruido en el motor al encender",
+    "costo_estimado": 85000.50
+}
+
+### Actualizar
+PUT {{uri}}/1
+Content-Type: application/json
+
+{
+    "estado": "En Proceso",
+    "costo_estimado": 95000
+}
+
+### Eliminar
+DELETE {{uri}}/1
